@@ -6,6 +6,7 @@ import (
 	"log"
 	"time"
 
+	"github.com/kajozst/unaki/nak"
 	"github.com/wailsapp/wails/v3/pkg/application"
 )
 
@@ -35,6 +36,9 @@ func main() {
 		},
 		BackgroundColour: application.NewRGB(27, 38, 54),
 		URL:              "/",
+	})
+	app.OnEvent("read", func(e *application.CustomEvent) {
+		nak.Nak()
 	})
 
 	go func() {
