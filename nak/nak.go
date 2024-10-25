@@ -2,6 +2,7 @@ package nak
 
 import (
 	"context"
+	"io"
 	"os"
 
 	"github.com/fiatjaf/cli/v3"
@@ -52,9 +53,32 @@ var app = &cli.Command{
 	},
 }
 
-func Nak() {
-	if err := app.Run(context.Background(), os.Args); err != nil {
+func Nak(args []string) ([]byte, error) {
+	output, err := captureOutput(func() error {
+		return app.Run(context.Background(), args)
+	})
+	if err != nil {
 		stdout(err)
-		os.Exit(1)
+		return output, err
 	}
+
+	return output, nil
+}
+
+func captureOutput(f func() error) ([]byte, error) {
+	// Redirect stdout to a buffer
+	old := os.Stdout
+	r, w, _ := os.Pipe()
+	os.Stdout = w
+
+	// Call the provided function
+	err := f()
+
+	// Restore stdout
+	w.Close()
+	os.Stdout = old
+
+	// Read the captured output from the buffer
+	output, _ := io.ReadAll(r)
+	return output, err
 }
