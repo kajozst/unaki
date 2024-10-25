@@ -9,23 +9,35 @@ import {Events} from "@wailsio/runtime";
 // trigger command                     /////////////
 ///////////////////////////////////////////////////
 const getElement = (id) => document.getElementById(id);
+
 const command = () => {
-    
-    let eventData = ["nak", "req", "-k", "1", "-l", "5", "wss://e.nos.lol"];
-  
+    const kindInput = getElement('kind-input');
+    const lengthInput = getElement('length-input');
+    const relaysInput = getElement('relays-input');
+
+    const eventData = [
+        "nak",
+        "req",
+        "-k",
+        kindInput.value,
+        "-l",
+        lengthInput.value,
+        ...relaysInput.value.split(' ')
+    ];
+
     if (eventData) {
-        Events.Emit({name: 'command', data: JSON.stringify(eventData)});
+        Events.Emit({ name: 'command', data: JSON.stringify(eventData) });
     } else {
-        console.warn('cant send command');
+        console.warn('Cannot send command');
     }
-    
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-
-    if (getElement('command-button')) getElement('command-button').addEventListener('click', command);
-
+    if (getElement('command-button')) {
+        getElement('command-button').addEventListener('click', command);
+    }
 });
+
 
 
 

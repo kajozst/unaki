@@ -44,7 +44,7 @@ func main() {
 		err := json.Unmarshal([]byte(e.Data.(string)), &args)
 		if err != nil {
 			// Handle the error when unmarshaling the JSON data
-			app.Logger.Info("---NOT-OK")
+			app.Logger.Info("---COMMAND-IS-NOT-OK")
 			return
 		}
 
@@ -62,11 +62,17 @@ func main() {
 
 	})
 
+	var tick bool
 	go func() {
 		for {
 			now := time.Now().Format(time.RFC1123)
 			app.EmitEvent("time", now)
-			app.Logger.Info("TICK")
+			if tick {
+				app.Logger.Info("tick")
+			} else {
+				app.Logger.Info("tock")
+			}
+			tick = !tick
 			time.Sleep(time.Second)
 		}
 	}()
