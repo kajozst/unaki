@@ -38,16 +38,30 @@ body {
   
   margin: 0 auto;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 8px;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 4px;
   justify-content: center;
   align-items: center;
+  align-content: center;
+  width: 100%;
 
 }
 
-/* Base styles for all inputs and selects */
-select, input, option {
+input, label {
+  display:block;
+}
+
+/*
+.input-group > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+ 
+}
+
+input, textarea {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: white;
@@ -55,18 +69,19 @@ select, input, option {
   border-radius: 8px;
   font-size: 1rem;
   transition: all 0.3s ease;
+  text-align: center;
 }
 
-/* Single select styling */
-#single-select {
-  cursor: pointer;
-  
+textarea {
+  width: 500px;
+  height: 50px;
 }
 
-/* Number inputs styling */
 input[type="number"] {
   appearance: textfield;
-  width: auto;
+  width: 100px;
+
+  
 }
 
 input[type="number"]::-webkit-inner-spin-button,
@@ -75,90 +90,13 @@ input[type="number"]::-webkit-outer-spin-button {
   margin: 0;
 }
 
-/* Multiple select styling */
-/*
-.multiple-select-container {
-  position: relative;
-}
 
-#multiple-select {
-  width: 100%;
-  min-height: 70px;
-  padding: 10px;
-}
-
-#multiple-select option {
-  padding: 8px;
-  margin: 2px;
-  background: rgba(67, 97, 238, 0.1);
-  border-radius: 4px;
-}
-
-#multiple-select option:checked {
-  background: rgba(67, 97, 238, 0.3);
-  color: white;
-}
-*/
-.dropdown-check-list {
-  display: inline-block;
-}
-
-.dropdown-check-list .anchor {
-  position: relative;
-  cursor: pointer;
-  display: inline-block;
-  padding: 5px 50px 5px 10px;
-  border: 1px solid #ccc;
-}
-
-.dropdown-check-list .anchor:after {
-  position: absolute;
-  content: "";
-  border-left: 2px solid black;
-  border-top: 2px solid black;
-  padding: 5px;
-  right: 10px;
-  top: 20%;
-  -moz-transform: rotate(-135deg);
-  -ms-transform: rotate(-135deg);
-  -o-transform: rotate(-135deg);
-  -webkit-transform: rotate(-135deg);
-  transform: rotate(-135deg);
-}
-
-.dropdown-check-list .anchor:active:after {
-  right: 8px;
-  top: 21%;
-}
-
-.dropdown-check-list ul.items {
-  padding: 2px;
-  display: none;
-  margin: 0;
-  border: 1px solid #ccc;
-  border-top: none;
-}
-
-.dropdown-check-list ul.items li {
-  list-style: none;
-}
-
-.dropdown-check-list.visible .anchor {
-  color: #0094ff;
-}
-
-.dropdown-check-list.visible .items {
-  display: block;
-}
-
-
-/* Focus states */
 select:focus, input:focus {
   outline: none;
   border-color: #00b4d8;
   box-shadow: 0 0 10px rgba(0, 180, 216, 0.3);
 }
-
+*/
 /* Button styling remains mostly the same but adjusted margin */
 #command-button {
   background: linear-gradient(45deg, #00b4d8, #4361ee);
@@ -177,7 +115,7 @@ select:focus, input:focus {
 
 /* Container adjustment to account for fixed header */
 #container {
-  margin-top: 120px; /* Adjust this value based on your header height */
+  margin-top: 300px; /* Adjust this value based on your header height */
   flex: 1;
   padding: 20px;
   max-width: 80%;
@@ -238,6 +176,11 @@ select:focus, input:focus {
   white-space: pre-wrap; /* Preserves whitespace and wraps */
   max-height: 300px;
   overflow-y: auto;
+  align-self: center;
+  text-align: center;
+  margin: 4px;
+  padding: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Tags list styling */
@@ -321,7 +264,7 @@ select:focus, input:focus {
   }
   
   #container {
-      margin-top: 160px; /* Adjust for mobile */
+      
       padding: 10px;
   }
 }

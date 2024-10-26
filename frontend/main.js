@@ -86,7 +86,7 @@ function processData(data) {
         eventDiv.appendChild(kindElement);
 
         const contentElement = document.createElement('p');
-        contentElement.textContent = `Content: ${event.content}`;
+        contentElement.textContent = ` ${event.content}`;
         eventDiv.appendChild(contentElement);
       
         const idElement = document.createElement('p');
